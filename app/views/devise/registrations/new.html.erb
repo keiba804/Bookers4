@@ -1,7 +1,21 @@
 <h2>Sign up</h2>
+<% if @user.errors.any? %>
+     <div class="alert">
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div>
+    <%= f.label :name %><br />
+    <%= f.text_field :name,autofocus: true ,autocomplete: "name" %>
+  </div>
 
   <div class="field">
     <%= f.label :email %><br />

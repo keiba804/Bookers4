@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+      <div class="form-user style-1 rounded has-shadow-1">
+                <div class="">
+                    <h1>User info</h1>
+                </div>
+    <% if @user.errors.any? %>
+        <div class="alert">
+          <ul>
+            <%= @user.errors.count %>errors prohibited this obj from being saved:<br>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+        <!-- form_for部分 -->
+        <div class="form-body">
+          <%= form_for(@user) do |f| %>
+              <h4>name</h4>
+              <%= f.text_field :name %>
+              <h4>Image</h4>
+              <div class="user-edit-image">
+               <%= f.attachment_field :profile_image,  class: "user-edit-form" %>
+              </div>
+              <h4>introduction</h4>
+              <%= f.text_area :introduction %>
+              <%= f.submit 'Update User' %>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>
